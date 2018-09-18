@@ -1,0 +1,170 @@
+﻿@model CCIOfficeServiceManagementSystem.Models.UserModel
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2 style="text-align:center">Delete</h2>*@
+<div style="position:relative;top:10px;border-bottom:ridge 1px;">
+    <table style="margin-left:300px;font-size:x-large;font-weight:600;">
+        <tr>
+            <td>
+               Delete Employee Details
+            </td>
+        </tr>
+    </table>
+</div>
+<br />
+<div>
+   <h3 style="margin-left:160px;"> Are you sure you want to delete this?</h3> 
+</div>
+<fieldset>
+    <legend>UserModel</legend>
+    
+    <table>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            [ @Html.DisplayNameFor(model => model.EmployeeName)]:
+                        </td>
+                        <td></td>
+
+                        <td style="font-weight:800;font-size:large;">
+                            @Html.DisplayFor(model => model.EmployeeName)
+                        </td>
+                    </tr>
+                    <tr><td><br /></td></tr>
+                    <tr>
+                        <td>
+                            [@Html.DisplayNameFor(model => model.AccountName)]:
+                        </td>
+                        <td></td>
+                        <td style="font-weight:800;font-size:large;">
+
+                            @Html.DisplayFor(model => model.AccountName)
+
+                        </td>
+                    </tr>
+                    <tr><td><br /></td></tr>
+
+
+                    <tr>
+                        <td>
+                            [ @Html.DisplayNameFor(model => model.EmailAddress)]:
+                        </td>
+                        <td></td>
+                        <td style="font-weight:800;font-size:large;">
+
+                            @Html.DisplayFor(model => model.EmailAddress)
+
+                        </td>
+                    </tr>
+                    <tr><td><br /></td></tr>
+
+                    <tr>
+                        <td>
+                            [@Html.DisplayNameFor(model => model.CostCenterId)]:
+                        </td>
+                        <td></td>
+                        <td style="font-weight:800;font-size:large;">
+
+                            @Html.DisplayFor(model => model.CostCenterId)
+
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            [@Html.DisplayNameFor(model => model.MobileNumber)]:
+                        </td>
+                        <td></td>
+                        <td style="font-weight:800;font-size:large;">
+
+                            @Html.DisplayFor(model => model.MobileNumber)
+
+                        </td>
+                    </tr>
+                    <tr><td><br /></td></tr>
+
+
+
+                    <tr>
+                        <td>
+                            [@Html.DisplayNameFor(model => model.MobileAcNumber)]:
+                        </td>
+                        <td></td>
+                        <td style="font-weight:800;font-size:large;">
+
+                            @Html.DisplayFor(model => model.MobileAcNumber)
+
+                        </td>
+                    </tr>
+                    <tr><td><br /></td></tr>
+
+
+                    <tr>
+                        <td>
+                            [@Html.DisplayNameFor(model => model.DataCardNumber)]:
+                        </td>
+                        <td></td>
+                        <td style="font-weight:800;font-size:large;">
+
+                            @Html.DisplayFor(model => model.DataCardNumber)
+
+                        </td>
+                    </tr>
+                    <tr><td><br /></td></tr>
+
+
+                    <tr>
+                        <td>
+                            [@Html.DisplayNameFor(model => model.DatacardAcNumber)]:
+                        </td>
+                        <td></td>
+                        <td style="font-weight:800;font-size:large;">
+
+                            @Html.DisplayFor(model => model.DatacardAcNumber)
+
+                        </td>
+                    </tr>
+                    <tr><td><br /></td></tr>
+                    <tr>
+                        <td>
+                            [@Html.DisplayNameFor(model => model.OfficeLocation)]:
+                        </td>
+                        <td></td>
+                        <td style="font-weight:800;font-size:large;">
+
+                            @Html.DisplayFor(model => model.OfficeLocation)
+
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</fieldset>
+<br />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div style="margin-left:50px;">
+        <table>
+            <tr>
+                <td style="font-size:large;">
+                    <input type="submit" value="Delete" /> </td><td></td><td></td><td></td><td></td><td>
+    @Html.ActionLink("Back to List", "Index")
+</td></tr>
+                    </table>
+    </div>
+}

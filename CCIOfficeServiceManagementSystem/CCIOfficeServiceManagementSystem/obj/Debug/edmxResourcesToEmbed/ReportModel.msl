@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CCIDatabaseModelStoreContainer" CdmEntityContainer="CCIDatabaseEntities">
+    <EntitySetMapping Name="AirtelManagements">
+      <EntityTypeMapping TypeName="CCIDatabaseModel.AirtelManagement">
+        <MappingFragment StoreEntitySet="AirtelManagement">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+          <ScalarProperty Name="AirtelNumber" ColumnName="AirtelNumber" />
+          <ScalarProperty Name="OnetimeCharges" ColumnName="OnetimeCharges" />
+          <ScalarProperty Name="MonthlyCharges" ColumnName="MonthlyCharges" />
+          <ScalarProperty Name="CallCharges" ColumnName="CallCharges" />
+          <ScalarProperty Name="ValueAddedServices" ColumnName="ValueAddedServices" />
+          <ScalarProperty Name="MobileInternetUsage" ColumnName="MobileInternetUsage" />
+          <ScalarProperty Name="Roaming" ColumnName="Roaming" />
+          <ScalarProperty Name="Discounts" ColumnName="Discounts" />
+          <ScalarProperty Name="Taxes" ColumnName="Taxes" />
+          <ScalarProperty Name="TotalCharges" ColumnName="TotalCharges" />
+          <ScalarProperty Name="WhoUploaded" ColumnName="WhoUploaded" />
+          <ScalarProperty Name="UploadedDate" ColumnName="UploadedDate" />
+          <ScalarProperty Name="ForWhichMonth" ColumnName="ForWhichMonth" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StaticAdminDetails">
+      <EntityTypeMapping TypeName="CCIDatabaseModel.StaticAdminDetail">
+        <MappingFragment StoreEntitySet="StaticAdminDetails">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="RememberMe" ColumnName="RememberMe" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="staticEmployeeDetails">
+      <EntityTypeMapping TypeName="CCIDatabaseModel.staticEmployeeDetail">
+        <MappingFragment StoreEntitySet="staticEmployeeDetails">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="CostCenterId" ColumnName="CostCenterId" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="MobileAcNumber" ColumnName="MobileAcNumber" />
+          <ScalarProperty Name="DataCardNumber" ColumnName="DataCardNumber" />
+          <ScalarProperty Name="DatacardAcNumber" ColumnName="DatacardAcNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webpages_Membership">
+      <EntityTypeMapping TypeName="CCIDatabaseModel.webpages_Membership">
+        <MappingFragment StoreEntitySet="webpages_Membership">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+          <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+          <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+          <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="PasswordChangedDate" ColumnName="PasswordChangedDate" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+          <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webpages_OAuthMembership">
+      <EntityTypeMapping TypeName="CCIDatabaseModel.webpages_OAuthMembership">
+        <MappingFragment StoreEntitySet="webpages_OAuthMembership">
+          <ScalarProperty Name="Provider" ColumnName="Provider" />
+          <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="webpages_Roles">
+      <EntityTypeMapping TypeName="CCIDatabaseModel.webpages_Roles">
+        <MappingFragment StoreEntitySet="webpages_Roles">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="webpages_UsersInRoles" TypeName="CCIDatabaseModel.webpages_UsersInRoles" StoreEntitySet="webpages_UsersInRoles">
+      <EndProperty Name="webpages_Roles">
+        <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+      </EndProperty>
+      <EndProperty Name="StaticAdminDetails">
+        <ScalarProperty Name="UserId" ColumnName="UserId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="AddNewData" FunctionName="CCIDatabaseModel.Store.AddNewData" />
+    <FunctionImportMapping FunctionImportName="DeleteDetails" FunctionName="CCIDatabaseModel.Store.DeleteDetails" />
+    <FunctionImportMapping FunctionImportName="EditSingleData" FunctionName="CCIDatabaseModel.Store.EditSingleData" />
+    <FunctionImportMapping FunctionImportName="getSingleEmployeeDetail" FunctionName="CCIDatabaseModel.Store.getSingleEmployeeDetail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CCIDatabaseModel.getSingleEmployeeDetail_Result">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="CostCenterId" ColumnName="CostCenterId" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="MobileAcNumber" ColumnName="MobileAcNumber" />
+          <ScalarProperty Name="DataCardNumber" ColumnName="DataCardNumber" />
+          <ScalarProperty Name="DatacardAcNumber" ColumnName="DatacardAcNumber" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GetUserName" FunctionName="CCIDatabaseModel.Store.GetUserName">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CCIDatabaseModel.GetUserName_Result">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="RememberMe" ColumnName="RememberMe" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SaveDataIntoDataBase" FunctionName="CCIDatabaseModel.Store.SaveDataIntoDataBase" />
+    <FunctionImportMapping FunctionImportName="viewEmployeeDetails" FunctionName="CCIDatabaseModel.Store.viewEmployeeDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="CCIDatabaseModel.viewEmployeeDetails_Result">
+          <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+          <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+          <ScalarProperty Name="AccountName" ColumnName="AccountName" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="CostCenterId" ColumnName="CostCenterId" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="MobileAcNumber" ColumnName="MobileAcNumber" />
+          <ScalarProperty Name="DataCardNumber" ColumnName="DataCardNumber" />
+          <ScalarProperty Name="DatacardAcNumber" ColumnName="DatacardAcNumber" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

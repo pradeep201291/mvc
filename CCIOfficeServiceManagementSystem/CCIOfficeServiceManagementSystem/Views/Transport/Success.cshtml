@@ -1,0 +1,27 @@
+﻿@model CCIOfficeServiceManagementSystem.Models.Transport
+
+@{
+    ViewBag.Title = "Success";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="border-bottom:ridge 1px;top:20px;position:relative;">
+    <table>
+        <tr>
+            <td>
+                @using (Html.BeginForm("ImportExcelFile", "Transport", FormMethod.Get))
+                {
+                    <input type="submit" value="Import" style="width: 100px; background-color: #0060A9;font-size:large;color:white;height:30px;border:none;" />
+                }
+            </td>
+            <td>
+                @using (Html.BeginForm("ViewDataOfTransDatabase", "Transport", FormMethod.Post))
+                {
+                    <input type="submit" value="View" style="width: 100px; background-color: #0060A9;font-size:large;color:white;height:30px;border:none;" />
+                }
+            </td>
+        </tr>
+    </table>
+</div>
+<br />
+<br />
+<h2>Data Uploaded Successfully into the DataBase</h2>

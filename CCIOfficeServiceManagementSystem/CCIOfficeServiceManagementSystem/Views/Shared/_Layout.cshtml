@@ -1,0 +1,139 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Scripts/jquery-1.7.1.min.js"></script>
+    @Styles.Render("~/Content/css") 
+    @Scripts.Render("~/bundles/modernizr")  
+     
+</head>   
+ 
+<body>   
+
+    <div id="container"> 
+        <div id="header">
+
+            @*<table> 
+                <tr>*@
+            @*<td width="200px">*@
+            <img src="~/Images/CCIlogo.gif" width="151" height="72" />
+            @*</td>*@
+            @*<td>*@
+        </div>
+        <div class="title">
+            <h1 style="font-family:Times New Roman;">Office Service Management System</h1> 
+            @*</td>*@
+        </div>
+        <div class="img">
+            <img src="~/Images/imi-logo.png" width="151" height="72" />
+        </div>
+         
+
+        @*<div id="logintab">*@
+            
+        <div style="background-color: #0060A9; width: 1500px; top: 100px;align-content:center; height: 35px;position:fixed;text-align:right;left:0px;">
+            <section id="login">
+                @Html.Partial("_LoginPartial")
+            </section>
+            </div>
+            @*</div>*@
+            @if (!Request.Path.ToString().Equals("/Account/Login"))
+            {
+                <div id="divMenuDiv">
+                    <table>
+                        <tr>
+                            <td>
+
+                                @using (Html.BeginForm("Index", "UserManagement", new { Returnurl = ViewBag.Returnurl }))
+                                {
+                                    <input type="submit" value="Employee Management" style="width: 200px; background-color: #0060A9;font-size:large;color:white;height:35px;border:none;" />
+                                }
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr>
+                            <td>
+
+                                @using (Html.BeginForm("Index", "AirtelManagement", new { Returnurl = ViewBag.Returnurl }))
+                                {
+                                    <input type="submit" value="AirtelManagement" style="width: 200px; background-color: #0060A9; font-size: large; color: white;height:35px;border:none; " />
+                                }
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr>
+                            <td>
+
+                                @using (Html.BeginForm("Index", "Transport", new { Returnurl = ViewBag.Returnurl }))
+                                {
+                                    <input type="submit" value="TransportManagement" style="width: 200px; background-color: #0060A9; font-size: large; color: white;height:35px;border:none; " />
+                                }
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr>
+                            <td>
+
+                                @using (Html.BeginForm("Index", "AirTravelManagement", new { Returnurl = ViewBag.Returnurl }))
+                                {
+                                    <input type="submit" value="AirTraveManagement" style="width: 200px; background-color: #0060A9; font-size: large; color: white;height:35px;border:none; " />
+                                }
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr></tr>
+                        <tr>
+                            <td>
+
+                                @using (Html.BeginForm("Index", "Reports", new { Returnurl = ViewBag.Returnurl }))
+                                {
+                                    <input type="submit" value="Reports" style="width: 200px; background-color: #0060A9; font-size: large; color: white;height:35px;border:none; " />
+                                }
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            }
+
+
+            <div id="content">
+
+                @RenderBody()
+            </div>
+        </div>
+              
+        <footer>
+            <div class="content-wrapper" style="height:40px">
+                
+                            <div class="float-left">
+                                <p>&copy; @DateTime.Now.Year - Control Component India Pvt.Ltd </p>
+                            </div>
+                        
+                            <div class="float-right" style="float:left">
+                                <a href="http://www.ccivalve.com/site-services/privacy.aspx?sc_lang=en">privacy</a>
+                            </div>
+                        
+            </div>
+
+        </footer>
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false) 
+    
+</body>
+</html>

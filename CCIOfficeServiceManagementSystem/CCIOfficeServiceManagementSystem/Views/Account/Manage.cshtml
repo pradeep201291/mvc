@@ -1,0 +1,36 @@
+﻿@model CCIOfficeServiceManagementSystem.Models.LocalPasswordModel
+@{
+    ViewBag.Title = "Manage Account";
+}
+<div style="border-bottom:ridge 1px;top:-30px;position:relative;">
+    <h1 style="position:relative;left:300px;width:300px;">Manage Account</h1>
+    @*<hgroup class="title1">
+        <h2 style="text-align:center;">@ViewBag.Title.</h2>
+    </hgroup>*@
+    </div>
+    <div style="margin-left:290px;">
+        
+
+        <p class="message-success">@ViewBag.StatusMessage</p>
+
+        <p><b>You're logged in as <strong>@User.Identity.Name</strong>.</b></p>
+        @Html.Partial("_ChangePasswordPartial")
+        @*@if (ViewBag.HasLocalPassword)
+        {
+            @Html.Partial("_ChangePasswordPartial")
+        }
+        else
+        {
+            @Html.Partial("_SetPasswordPartial")
+        }*@
+    </div>
+    @*<section id="externalLogins">
+            @Html.Action("RemoveExternalLogins")
+
+            <h3>Add an external login</h3>
+            @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+        </section>*@
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

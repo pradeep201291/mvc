@@ -1,0 +1,150 @@
+﻿@*@model IEnumerable<CCIOfficeServiceManagementSystem.Models.Transport>*@
+@model PagedList.IPagedList<CCIOfficeServiceManagementSystem.Models.Transport>
+@using PagedList.Mvc;
+
+
+
+
+@{
+    ViewBag.Title = "ViewDataOfTransDatabase";
+      @Styles.Render("~/Content/ViewData.css")
+}
+<div style="border-bottom:ridge 1px;top:20px;position:relative;">
+    <table>
+        <tr>
+            <td>
+                @using (Html.BeginForm("ImportExcelFile", "Transport", FormMethod.Get))
+                {
+                    <input type="submit" value="Import" style="width: 100px; background-color: #0060A9;font-size:large;color:white;height:30px;border:none;" />
+                }
+            </td>
+            <td>
+                @using (Html.BeginForm("ViewDataOfTransDatabase", "Transport", FormMethod.Post))
+                {
+                    <input type="submit" value="View" style="width: 100px; background-color: #0060A9;font-size:large;color:white;height:30px;border:none;" />
+                }
+            </td>
+        </tr>
+    </table>
+</div>
+
+<h2 style="text-align:center;">TransportDetails</h2>
+@using (Html.BeginForm("ViewDataOfTransDatabase", "Transport", FormMethod.Post))
+{
+    <p>
+        <h3>
+            Find by Name:@Html.TextBox("searchString", ViewBag.CurrentFilter as string)
+            <input type="submit" value="Search" />
+        </h3>
+    </p>
+
+}
+ @using (@Html.BeginForm("ViewDataOfTransDatabase", "Transport"))
+{
+    @Html.ValidationSummary(true);
+    <label> month</label>
+    <select id="list1" name="MonthSearch">
+        <option value="0">Month</option>
+        <option value="1">Janaury</option>
+        <option value="2">feb</option>
+        <option value="3">mar</option>
+        <option value="4">april</option>
+        <option value="5">may</option>
+        <option value="6">june</option>
+
+        <option value="7">July</option>
+        <option value="8">August</option>
+        <option value="9">Sept</option>
+        <option value="10">Oct</option>
+        <option value="11">Nov</option>
+        <option value="12">Dec</option>
+
+
+    </select>
+    <label> year</label>
+    <select id="list2" name="YearSearch">
+        <option value="0">Year</option>
+        <option value="2000">2000</option>
+        <option value="2001">2001</option>
+        <option value="2002">2002</option>
+        <option value="2003">2003</option>
+        <option value="2012">2012</option>
+        <option value="2013">2013</option>
+
+
+    </select>
+      <p>
+        <input type="submit" value="search data"/>
+    </p>
+
+ }
+
+<table border="1">
+    <tr>
+        <th>
+           PresentDate
+        </th>
+        <th>
+           Name
+        </th>
+        <th>
+           Place
+        </th>
+        <th>
+            Driver
+        </th>
+        <th>
+            VehicleNumber
+        </th>
+        <th>
+            Amount
+        </th>
+        <th>
+            CostCentre
+        </th>
+        @*<th>
+            UploadedDate
+        </th>
+        <th>
+            DateOfCreation
+        </th>*@
+        
+         
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PresentDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Place)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Driver)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VehicleNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CostCentre)
+        </td>
+       
+    </tr>
+}
+
+</table>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("ViewDataOfTransDatabase", "Transport", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+<br />
+@using (Html.BeginForm("ExportToExcel", "Transport", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl }))
+{
+    <input type="submit" name="Export" value="GenerateExcelFile" />
+}

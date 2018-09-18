@@ -1,0 +1,165 @@
+﻿@model CCIOfficeServiceManagementSystem.Models.UserModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2 style="text-align:center">Create</h2>*@
+<div style="position:relative;top:10px;border-bottom:ridge 1px;">
+    <table style="margin-left:300px;font-size:x-large;font-weight:600;">
+        <tr>
+            <td>
+              Create New Employee
+            </td>
+        </tr>
+    </table>
+</div>
+<br />
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true) 
+
+    <fieldset>
+        <legend>UserModel</legend>
+         
+        @*<div class="editor-label"> 
+            @Html.LabelFor(model => model.EmployeeId) 
+        </div> 
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EmployeeId)  
+            @Html.ValidationMessageFor(model => model.EmployeeId)
+        </div>*@ 
+            <table>
+                <tr> 
+                    <td>
+                        Employee Name
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.TextBoxFor(m => m.EmployeeName)
+                        @*<input type="text" name="employeename" />*@ 
+                        @Html.ValidationMessageFor(m => m.EmployeeName)
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td>
+                        Account Name
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.TextBoxFor(m => m.AccountName)
+                        @*<input type="text" name="accountname" />*@
+                        @Html.ValidationMessageFor(m => m.AccountName)
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td>
+                        Email Address
+                    </td>
+                    <td></td>
+                    <td>
+                        @*@Html.TextBoxFor(m => m.EmailAddress)*@
+                        <input type="email" name="emailaddress" />
+                        @Html.ValidationMessageFor(m => m.EmailAddress)
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td>
+                        Cost CenterId
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.TextBoxFor(m => m.CostCenterId)
+                        @*<input type="text" name="Costcenterid" />*@
+                        @Html.ValidationMessageFor(m => m.CostCenterId)
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td>
+                        Mobile Number
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.TextBoxFor(m => m.MobileNumber)
+                        @*<input type="text" name="mobilenumber" />*@
+                        @Html.ValidationMessageFor(m => m.MobileNumber)
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td>
+                        Mobile AcNumber
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.TextBoxFor(m => m.MobileAcNumber)
+                        @*<input type="number" name="Mobileacnumber" />*@
+                        @Html.ValidationMessageFor(m => m.MobileAcNumber)
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td>
+                        Data Card Number
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.TextBoxFor(m => m.DataCardNumber)
+                        @*<input type="number" name="Datacardnumber" />*@
+                        @Html.ValidationMessageFor(m => m.DataCardNumber)
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td>
+                        Data Card AcNumber
+                    </td>
+                    <td></td>
+                    <td>
+                       @Html.TextBoxFor(m => m.DatacardAcNumber)
+                        @*<input type="number" name="datacardacnumber" />*@
+                        @Html.ValidationMessageFor(m => m.DatacardAcNumber)
+                </td>
+            </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td>
+                        Office Location
+                    </td>
+                    <td></td>
+                    <td>
+                        @Html.TextBoxFor(m => m.OfficeLocation)
+                        @Html.ValidationMessageFor(m => m.OfficeLocation)
+                    </td>
+                </tr>
+                <tr><td></td></tr><tr></tr>
+                <tr>
+                    <td><input type="submit" value="Create" /></td>
+                    <td></td>
+                    <td>@Html.ActionLink("Back to List", "Index")</td>
+                </tr>
+        </table>
+    
+
+        
+    </fieldset>
+}
+
+ 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

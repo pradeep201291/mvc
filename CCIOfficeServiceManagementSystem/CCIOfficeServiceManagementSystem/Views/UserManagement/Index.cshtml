@@ -1,0 +1,119 @@
+﻿@model IEnumerable<CCIOfficeServiceManagementSystem.Models.UserModel>
+
+            @{
+                ViewBag.Title = "Index";
+                Layout = "~/Views/Shared/_Layout.cshtml";
+                @Styles.Render("~/Content/IndexPage.css")
+            }
+<div style="position:relative;top:10px;border-bottom:ridge 1px;">
+     <table style="margin-left:300px;font-size:x-large;font-weight:600;">
+         <tr>
+             <td>
+                 User Management
+             </td>
+         </tr>
+     </table>
+</div>
+ <br />
+<table><tr><td>
+    @using (Html.BeginForm("Index", "UserManagement"))
+    {
+        <p><h3>Find By Name:@Html.TextBox("searchString") <input type="submit" value="Search" /> </h3></p>
+
+    }
+</td><td>  
+    @using (Html.BeginForm("Create", "UserManagement", FormMethod.Get))
+    {
+        <input type="submit" value="Create" />
+    }</td>
+</tr>
+</table>
+
+    @*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@ 
+
+    <table border="1"  >
+        <tr>
+            @*<th style="border:1px solid">  
+                    @Html.DisplayNameFor(model => model.EmployeeId) 
+                </th>*@
+            <th style="border: 1px solid;">
+                @Html.DisplayNameFor(model => model.EmployeeName)
+            </th>
+            @*<th style="border: 1px solid">
+                    @Html.DisplayNameFor(model => model.AccountName)
+                </th>*@
+            <th style="border: 1px solid;">
+                @Html.DisplayNameFor(model => model.EmailAddress)
+            </th>
+            <th style="border: 1px solid">
+                @Html.DisplayNameFor(model => model.CostCenterId)
+            </th>
+            <th style="border: 1px solid">
+                @Html.DisplayNameFor(model => model.MobileNumber)
+            </th>
+            @*<th style="border: 1px solid">
+                    @Html.DisplayNameFor(model => model.MobileAcNumber)
+                </th>*@
+            <th style="border: 1px solid">
+                @Html.DisplayNameFor(model => model.DataCardNumber)
+            </th>
+            @*<th style="border: 1px solid">
+                @Html.DisplayNameFor(model => model.OfficeLocation)
+            </th>*@
+            @*<th style="border: 1px solid">
+                    @Html.DisplayNameFor(model => model.DatacardAcNumber)
+                </th>*@
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr id="tabledata">
+                @*<td style="border: 1px solid">
+                        @Html.DisplayFor(modelItem => item.EmployeeId)
+                    </td>*@
+                <td style="border: 1px solid">
+                    @Html.DisplayFor(modelItem => item.EmployeeName)
+                </td>
+                @*<td style="border: 1px solid">
+                        @Html.DisplayFor(modelItem => item.AccountName)
+                    </td>*@
+                <td style="border: 1px solid">
+                    @Html.DisplayFor(modelItem => item.EmailAddress)
+                </td>
+                <td style="border: 1px solid">
+                    @Html.DisplayFor(modelItem => item.CostCenterId)
+                </td>
+                <td style="border: 1px solid">
+                    @Html.DisplayFor(modelItem => item.MobileNumber)
+                </td>
+                @*<td style="border: 1px solid">
+                        @Html.DisplayFor(modelItem => item.MobileAcNumber)
+                    </td>*@
+                <td style="border: 1px solid">
+                    @Html.DisplayFor(modelItem => item.DataCardNumber)
+                </td>
+                @*<td style="border: 1px solid">
+                    @Html.DisplayFor(modelItem => item.OfficeLocation)
+                </td>*@
+                @*<td style="border: 1px solid">
+                        @Html.DisplayFor(modelItem => item.DatacardAcNumber)
+                    </td>*@
+                <td style="border:none;">
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ EmployeeId = item.EmployeeId })||
+                </td>
+                 
+                <td style="border:none;">
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ EmployeeId = item.EmployeeId })||
+                </td>
+                 
+                <td style="border:none;">
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ EmployeeId = item.EmployeeId })
+                </td>
+            </tr>
+        }
+    </table>
+ 
+

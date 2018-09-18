@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2 style="position:absolute;margin-left:400px;">Airtel Management</h2>    
+<div style="position:relative;top:20px;border-bottom:ridge 1px;">
+    <table>
+        <tr>
+            <td>
+                @using (Html.BeginForm("ImportExcelFile", "AirtelManagement", FormMethod.Get))
+{
+    <input type="submit" value="Import" style="width: 100px; background-color: #0060A9;font-size:large;color:white;height:30px;border:none;" />
+}
+            </td>
+            <td> 
+                @using (Html.BeginForm("ViewDataOfDatabase", "AirtelManagement", FormMethod.Post))
+{ 
+    <input type="submit" value="View" style="width: 100px; background-color: #0060A9;font-size:large;color:white;height:30px;border:none;" />
+}
+            </td>
+        </tr>
+    </table>
+</div>

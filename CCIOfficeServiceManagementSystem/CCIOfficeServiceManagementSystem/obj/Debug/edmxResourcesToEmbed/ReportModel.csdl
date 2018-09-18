@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CCIDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AirtelManagement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountNo" Type="Int64" Nullable="false" />
+    <Property Name="AirtelNumber" Type="Int64" Nullable="false" />
+    <Property Name="OnetimeCharges" Type="Double" Nullable="false" />
+    <Property Name="MonthlyCharges" Type="Double" Nullable="false" />
+    <Property Name="CallCharges" Type="Double" Nullable="false" />
+    <Property Name="ValueAddedServices" Type="Double" Nullable="false" />
+    <Property Name="MobileInternetUsage" Type="Double" Nullable="false" />
+    <Property Name="Roaming" Type="Double" Nullable="false" />
+    <Property Name="Discounts" Type="Double" Nullable="false" />
+    <Property Name="Taxes" Type="Double" Nullable="false" />
+    <Property Name="TotalCharges" Type="Double" Nullable="false" />
+    <Property Name="WhoUploaded" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UploadedDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ForWhichMonth" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="StaticAdminDetail">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RememberMe" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="webpages_Roles" Relationship="Self.webpages_UsersInRoles" FromRole="StaticAdminDetails" ToRole="webpages_Roles" />
+  </EntityType>
+  <EntityType Name="staticEmployeeDetail">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AccountName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CostCenterId" Type="Int64" />
+    <Property Name="MobileNumber" Type="Int64" />
+    <Property Name="MobileAcNumber" Type="Int64" />
+    <Property Name="DataCardNumber" Type="Int64" />
+    <Property Name="DatacardAcNumber" Type="Int64" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ConfirmationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="IsConfirmed" Type="Boolean" />
+    <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordSalt" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ProviderUserId" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="StaticAdminDetails" Relationship="Self.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="StaticAdminDetails" />
+  </EntityType>
+  <Association Name="webpages_UsersInRoles">
+    <End Role="webpages_Roles" Type="Self.webpages_Roles" Multiplicity="*" />
+    <End Role="StaticAdminDetails" Type="Self.StaticAdminDetail" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="CCIDatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AirtelManagements" EntityType="Self.AirtelManagement" />
+    <EntitySet Name="StaticAdminDetails" EntityType="Self.StaticAdminDetail" />
+    <EntitySet Name="staticEmployeeDetails" EntityType="Self.staticEmployeeDetail" />
+    <EntitySet Name="webpages_Membership" EntityType="Self.webpages_Membership" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="Self.webpages_OAuthMembership" />
+    <EntitySet Name="webpages_Roles" EntityType="Self.webpages_Roles" />
+    <AssociationSet Name="webpages_UsersInRoles" Association="Self.webpages_UsersInRoles">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="StaticAdminDetails" EntitySet="StaticAdminDetails" />
+    </AssociationSet>
+    <FunctionImport Name="AddNewData">
+      <Parameter Name="EmployeeName" Mode="In" Type="String" />
+      <Parameter Name="AccountName" Mode="In" Type="String" />
+      <Parameter Name="EmailAddress" Mode="In" Type="String" />
+      <Parameter Name="CostCenterId" Mode="In" Type="Int32" />
+      <Parameter Name="MobileNumber" Mode="In" Type="Int64" />
+      <Parameter Name="MobileAcNumber" Mode="In" Type="Int64" />
+      <Parameter Name="DatacardNumber" Mode="In" Type="Int64" />
+      <Parameter Name="DataCardAcNumber" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="DeleteDetails">
+      <Parameter Name="EmployeeId" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="EditSingleData">
+      <Parameter Name="UserId" Mode="In" Type="Int32" />
+      <Parameter Name="EmployeeName" Mode="In" Type="String" />
+      <Parameter Name="AccountName" Mode="In" Type="String" />
+      <Parameter Name="EmailAddress" Mode="In" Type="String" />
+      <Parameter Name="CostCenterId" Mode="In" Type="Int64" />
+      <Parameter Name="MobileNumber" Mode="In" Type="Int64" />
+      <Parameter Name="MobileAcNumber" Mode="In" Type="Int64" />
+      <Parameter Name="DataCardNumber" Mode="In" Type="Int64" />
+      <Parameter Name="DatacardAcNumber" Mode="In" Type="Int64" />
+    </FunctionImport>
+    <FunctionImport Name="getSingleEmployeeDetail" ReturnType="Collection(CCIDatabaseModel.getSingleEmployeeDetail_Result)">
+      <Parameter Name="EmployeeId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GetUserName" ReturnType="Collection(CCIDatabaseModel.GetUserName_Result)" />
+    <FunctionImport Name="SaveDataIntoDataBase">
+      <Parameter Name="MobileAcNumber" Mode="In" Type="Int64" />
+      <Parameter Name="AirtelNumber" Mode="In" Type="Int64" />
+      <Parameter Name="OnetimeCharges" Mode="In" Type="Int32" />
+      <Parameter Name="Monthlycharges" Mode="In" Type="Double" />
+      <Parameter Name="CallCharges" Mode="In" Type="Double" />
+      <Parameter Name="ValueAdddedServices" Mode="In" Type="Double" />
+      <Parameter Name="MobileInternetUsage" Mode="In" Type="Double" />
+      <Parameter Name="Roaming" Mode="In" Type="Double" />
+      <Parameter Name="Discounts" Mode="In" Type="Double" />
+      <Parameter Name="Taxes" Mode="In" Type="Double" />
+      <Parameter Name="TotalCharges" Mode="In" Type="Double" />
+      <Parameter Name="WhoUploaded" Mode="In" Type="String" />
+      <Parameter Name="UploadedDate" Mode="In" Type="DateTime" />
+      <Parameter Name="ForWhichMonth" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="viewEmployeeDetails" ReturnType="Collection(CCIDatabaseModel.viewEmployeeDetails_Result)" />
+  </EntityContainer>
+  <ComplexType Name="getSingleEmployeeDetail_Result">
+    <Property Type="Int64" Name="EmployeeId" Nullable="false" />
+    <Property Type="String" Name="EmployeeName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="AccountName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="EmailAddress" Nullable="true" MaxLength="50" />
+    <Property Type="Int64" Name="CostCenterId" Nullable="true" />
+    <Property Type="Int64" Name="MobileNumber" Nullable="true" />
+    <Property Type="Int64" Name="MobileAcNumber" Nullable="true" />
+    <Property Type="Int64" Name="DataCardNumber" Nullable="true" />
+    <Property Type="Int64" Name="DatacardAcNumber" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="GetUserName_Result">
+    <Property Type="Int32" Name="UserId" Nullable="false" />
+    <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="UserPassword" Nullable="false" MaxLength="50" />
+    <Property Type="Boolean" Name="RememberMe" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="viewEmployeeDetails_Result">
+    <Property Type="Int64" Name="EmployeeId" Nullable="false" />
+    <Property Type="String" Name="EmployeeName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="AccountName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="EmailAddress" Nullable="true" MaxLength="50" />
+    <Property Type="Int64" Name="CostCenterId" Nullable="true" />
+    <Property Type="Int64" Name="MobileNumber" Nullable="true" />
+    <Property Type="Int64" Name="MobileAcNumber" Nullable="true" />
+    <Property Type="Int64" Name="DataCardNumber" Nullable="true" />
+    <Property Type="Int64" Name="DatacardAcNumber" Nullable="true" />
+  </ComplexType>
+</Schema>

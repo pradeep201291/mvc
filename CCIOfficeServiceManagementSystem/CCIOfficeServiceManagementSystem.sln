@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Web
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCIOfficeServiceManagementSystem", "CCIOfficeServiceManagementSystem\CCIOfficeServiceManagementSystem.csproj", "{6D25267E-1112-43B1-BF31-F97EF94FE122}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{F03CD537-F2C3-4A71-ADCC-3ADD6B49776F}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://umakanta.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = CCIOfficeServiceManagementSystem\\CCIOfficeServiceManagementSystem.csproj
+		SccProjectName1 = CCIOfficeServiceManagementSystem
+		SccLocalPath1 = CCIOfficeServiceManagementSystem
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6D25267E-1112-43B1-BF31-F97EF94FE122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D25267E-1112-43B1-BF31-F97EF94FE122}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D25267E-1112-43B1-BF31-F97EF94FE122}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D25267E-1112-43B1-BF31-F97EF94FE122}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,213 @@
+﻿@*@model IEnumerable<CCIOfficeServiceManagementSystem.Models.AirtelManagementModel>*@
+
+@model PagedList.IPagedList<CCIOfficeServiceManagementSystem.Models.AirtelManagementModel>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "ViewData";
+    @Styles.Render("~/Content/ViewData.css")
+}
+
+<div style="border-bottom:ridge 1px;top:20px;position:relative;">     
+    <table> 
+        <tr>  
+            <td> 
+                @using (Html.BeginForm("ImportExcelFile", "AirtelManagement", FormMethod.Get))   
+{
+                    <input type="submit" value="Import" style="width: 100px; background-color: #0060A9;font-size:large;color:white;height:30px;border:none;" />
+}
+            </td>
+            <td>
+                @using (Html.BeginForm("ViewDataOfDatabase", "AirtelManagement", FormMethod.Post))
+{
+                    <input type="submit" value="View" style="width: 100px; background-color: #0060A9;font-size:large;color:white;height:30px;border:none;" />
+}
+            </td>
+        </tr>
+    </table>
+</div>
+
+<h2 style="text-align:center">AirtelDetails</h2>
+@using (Html.BeginForm("ViewDataOfDatabase", "AirtelManagement",FormMethod.Post))
+    {
+    <h3>Search by PhoneNumber:@Html.TextBox("SearchString",ViewBag.CurrentFilter as string)</h3>
+    
+        <p><h3>Year:@Html.DropDownList("Year",(IEnumerable<SelectListItem>)ViewBag.SelectList, "Select Year")</h3>
+        <h3>Month:@Html.DropDownList("Month", (IEnumerable<SelectListItem>)ViewBag.SelectMonthList, "Select Month")</h3>
+        <h3>City: @Html.DropDownList("City", (IEnumerable<SelectListItem>)ViewBag.CityList, "Select City")</h3></p>
+    <p><input type="submit" value="Search" /></p>
+
+    <script>
+        $(document).ready(function () {
+            $("#Year").change(function () {
+                //debugger;
+                //alert($("#Yearitems>option:selected").attr("Value"));
+                $.ajax({
+                    type: "Post",
+                    url: '@Url.Action("GetMonths","AirtelManagement")',
+                    data: { YearId: $("#Year>option:selected").attr("Value") },
+                    datatype: "Json",
+                    success: function (data) {
+                        //debugger;
+                        $("#Month").html("");
+                        $.each(data, function (index, item) {
+                            $("#Month").append(new Option(item.MonthName, item.MonthSelectedId));
+                        });
+                    },
+                    error: function () {
+                        alert("Select Year");
+                    }
+                });
+            });
+        });
+    </script>
+
+    }
+
+<table border="1">
+    <tr>
+
+        @*<th style="border: 1px solid">
+                @Html.DisplayNameFor(model => model.MobileAcNumber)
+            </th>
+            <th style="border: 1px solid">
+                @Html.DisplayNameFor(model => model.AirtelNumber)
+            </th>
+            <th style="border: 1px solid">
+                @Html.DisplayNameFor(model => model.OneTime)
+            </th>
+            <th style="border: 1px solid">
+                @Html.DisplayNameFor(model => model.MonthlyCharges)
+            </th>
+            <th style="border: 1px solid">
+                @Html.DisplayNameFor(model => model.CallCharges)
+            </th>
+            <th style="border: 1px solid">
+                @Html.DisplayNameFor(model => model.ValueAddedServices)
+            </th>
+            <th style="border: 1px solid">
+                @Html.DisplayNameFor(model => model.MobileInternetUsage)
+            </th>
+            <th style="border: 1px solid">
+                @Html.DisplayNameFor(model => model.Roaming)
+            </th>
+            <th style="border: 1px solid">
+                @Html.DisplayNameFor(model => model.Discounts)
+            </th>
+            <th style="border: 1px solid">
+                @Html.DisplayNameFor(model => model.Taxes)
+            </th>
+            <th style="border: 1px solid">
+                @Html.DisplayNameFor(model => model.TotalCharges)
+            </th>*@
+        <th>
+            MobileAcNumber
+        </th>
+        <th>
+            AirtelNumber
+        </th>
+        <th>
+            OneTime
+        </th>
+        <th>
+            MonthlyCharges
+        </th>
+        <th>
+            CallCharges
+        </th>
+        <th>
+            ValueAddedServices
+        </th>
+        <th>
+            MobileInternetUsage
+        </th>
+        <th>
+            Roaming
+        </th>
+        <th>
+            Discounts
+        </th>
+        <th>
+            Taxes
+        </th>
+        <th>
+            TotalCharges
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+            {
+            <tr>
+                <td style="border: 1px solid">
+                    @Html.DisplayFor(modelItem => item.MobileAcNumber)
+                </td>
+                <td style="border: 1px solid">
+                    @Html.DisplayFor(modelItem => item.AirtelNumber)
+                </td>
+                <td style="border: 1px solid">
+                    @Html.DisplayFor(modelItem => item.OneTime)
+                </td>
+                <td style="border: 1px solid">
+                    @Html.DisplayFor(modelItem => item.MonthlyCharges)
+                </td>
+                <td style="border: 1px solid">
+                    @Html.DisplayFor(modelItem => item.CallCharges)
+                </td>
+                <td style="border: 1px solid">
+                    @Html.DisplayFor(modelItem => item.ValueAddedServices)
+                </td>
+                <td style="border: 1px solid">
+                    @Html.DisplayFor(modelItem => item.MobileInternetUsage)
+                </td>
+                <td style="border: 1px solid">
+                    @Html.DisplayFor(modelItem => item.Roaming)
+                </td>
+                <td style="border: 1px solid">
+                    @Html.DisplayFor(modelItem => item.Discounts)
+                </td>
+                <td style="border: 1px solid">
+                    @Html.DisplayFor(modelItem => item.Taxes)
+                </td>
+                <td style="border: 1px solid">
+                    @Html.DisplayFor(modelItem => item.TotalCharges)
+                </td>
+            </tr>
+            }
+</table>
+<br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount 
+    @Html.PagedListPager(Model, page => Url.Action("ViewDataOfDatabase", "AirtelManagement", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter, Year = ViewBag.Year, Month = ViewBag.Month, City = ViewBag.City }))
+
+    <br />
+    @*@using (Html.BeginForm("ExportData", "AirtelManagement", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+        <input type="submit" value="AirtelDetailsExportToExcel" title="AirtelDetails-ExportToExcel" />
+        <br />
+        }*@
+    <table>
+        <tr>
+            <td>
+                @using (Html.BeginForm("ExportToWord", "AirtelManagement", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl }))
+            {
+
+            @Html.AntiForgeryToken()
+            <input type="submit" name="Export" value="GenerateWordFile" />
+            }
+            </td>
+            <td>
+                @using (Html.BeginForm("ExportToPdf", "AirtelManagement", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl }))
+            {
+            @Html.AntiForgeryToken()
+            <input type="submit" name="Export" value="GeneratePdfFile" />
+            }
+            </td>
+            <td>
+                @using (Html.BeginForm("ExportToExcel", "AirtelManagement", FormMethod.Post, new { ReturnUrl = ViewBag.ReturnUrl }))
+            {
+            <input type="submit" name="Export" value="GenerateExcelFile" />
+                }
+            </td>
+        </tr>
+
+    </table>

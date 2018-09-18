@@ -1,0 +1,166 @@
+﻿@model CCIOfficeServiceManagementSystem.Models.UserModel
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+   
+}
+
+<div style="position:relative;top:10px;border-bottom:ridge 1px;">
+    <table style="margin-left:300px;font-size:x-large;font-weight:600;">
+        <tr>
+            <td>
+                Employee Details
+            </td>
+        </tr>
+    </table> 
+</div>
+<br />
+<fieldset>
+    <legend>UserModel</legend>
+
+    @*<div class="display-label">   
+         @Html.DisplayNameFor(model => model.EmployeeId) 
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EmployeeId)  
+    </div>*@
+    <br />
+    <br />
+    <table>  
+        <tr>
+            <td>
+                <table> 
+                    <tr>
+                        <td> 
+                           [ @Html.DisplayNameFor(model => model.EmployeeName)]:
+                        </td> 
+                        <td></td>
+                         
+                        <td style="font-weight:800;font-size:large;">   
+                             @Html.DisplayFor(model => model.EmployeeName)  
+                        </td>
+                    </tr><tr><td><br /></td></tr>
+                    <tr>
+                        <td >   
+                            [@Html.DisplayNameFor(model => model.AccountName)]: 
+                        </td>
+                        <td></td>
+                        <td style="font-weight:800;font-size:large;">
+
+                            @Html.DisplayFor(model => model.AccountName)
+
+                        </td>
+                    </tr> 
+<tr><td><br /></td></tr>
+ 
+ 
+                    <tr>
+                        <td>
+                           [ @Html.DisplayNameFor(model => model.EmailAddress)]:
+                        </td>
+                        <td></td>
+                        <td style="font-weight:800;font-size:large;">
+
+                            @Html.DisplayFor(model => model.EmailAddress)
+
+                        </td>
+                    </tr><tr><td><br /></td></tr>
+
+                    <tr>
+                        <td>
+                            [@Html.DisplayNameFor(model => model.CostCenterId)]:
+                        </td>
+                        <td></td>
+                        <td style="font-weight:800;font-size:large;">
+
+                            @Html.DisplayFor(model => model.CostCenterId)
+
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            [@Html.DisplayNameFor(model => model.MobileNumber)]:
+                        </td>
+                        <td></td>
+                        <td style="font-weight:800;font-size:large;">
+
+                            @Html.DisplayFor(model => model.MobileNumber)
+
+                        </td>
+                    </tr><tr><td><br /></td></tr>
+
+
+
+                    <tr>
+                        <td>
+                            [@Html.DisplayNameFor(model => model.MobileAcNumber)]:
+                        </td>
+                        <td></td>
+                        <td style="font-weight:800;font-size:large;">
+
+                            @Html.DisplayFor(model => model.MobileAcNumber)
+
+                        </td>
+                    </tr>
+                    <tr><td><br /></td></tr>
+
+
+                    <tr>
+                        <td>
+                            [@Html.DisplayNameFor(model => model.DataCardNumber)]:
+                        </td>
+                        <td></td>
+                        <td style="font-weight:800;font-size:large;">
+
+                            @Html.DisplayFor(model => model.DataCardNumber)
+
+                        </td>
+                    </tr>
+                    <tr><td><br /></td></tr>
+
+
+                    <tr>
+                        <td>
+                            [@Html.DisplayNameFor(model => model.DatacardAcNumber)]:
+                        </td>
+                        <td></td>
+                        <td style="font-weight:800;font-size:large;">
+
+                            @Html.DisplayFor(model => model.DatacardAcNumber)
+
+                        </td>
+                    </tr>
+                    <tr><td><br /></td></tr>
+                    <tr>
+                        <td>
+                            [@Html.DisplayNameFor(model => model.OfficeLocation)]:
+                        </td>
+                        <td></td>
+                        <td style="font-weight:800;font-size:large;">
+
+                            @Html.DisplayFor(model => model.OfficeLocation)
+
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</fieldset>
+<br />
+ <div style="margin-left:50px;">
+     <table>  <tr><td style="font-size:large;">
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ EmployeeId = Model.EmployeeId })
+</td><td></td><td></td><td></td><td></td><td><td></td><td style="font-size:large;">   
+    @Html.ActionLink("Back to List", "Index")</td>
+</tr></table>
+</div>

@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CCIDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AirtelManagement">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountNo" Type="bigint" Nullable="false" />
+    <Property Name="AirtelNumber" Type="bigint" Nullable="false" />
+    <Property Name="OnetimeCharges" Type="float" Nullable="false" />
+    <Property Name="MonthlyCharges" Type="float" Nullable="false" />
+    <Property Name="CallCharges" Type="float" Nullable="false" />
+    <Property Name="ValueAddedServices" Type="float" Nullable="false" />
+    <Property Name="MobileInternetUsage" Type="float" Nullable="false" />
+    <Property Name="Roaming" Type="float" Nullable="false" />
+    <Property Name="Discounts" Type="float" Nullable="false" />
+    <Property Name="Taxes" Type="float" Nullable="false" />
+    <Property Name="TotalCharges" Type="float" Nullable="false" />
+    <Property Name="WhoUploaded" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UploadedDate" Type="date" Nullable="false" />
+    <Property Name="ForWhichMonth" Type="date" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'CCIDatabase.dbo.EmployeeInformation' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="EmployeeInformation">
+          <Property Name="Id" Type="int" />
+          <Property Name="EmployeeName" Type="varchar" MaxLength="50" />
+          <Property Name="ManagerId" Type="int" />
+        </EntityType>-->
+  <EntityType Name="StaticAdminDetails">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserPassword" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RememberMe" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="staticEmployeeDetails">
+    <Key>
+      <PropertyRef Name="EmployeeId" />
+    </Key>
+    <Property Name="EmployeeId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeName" Type="varchar" MaxLength="50" />
+    <Property Name="AccountName" Type="varchar" MaxLength="50" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
+    <Property Name="CostCenterId" Type="bigint" />
+    <Property Name="MobileNumber" Type="bigint" />
+    <Property Name="MobileAcNumber" Type="bigint" />
+    <Property Name="DataCardNumber" Type="bigint" />
+    <Property Name="DatacardAcNumber" Type="bigint" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ConfirmationToken" Type="nvarchar" MaxLength="128" />
+    <Property Name="IsConfirmed" Type="bit" />
+    <Property Name="LastPasswordFailureDate" Type="datetime" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="PasswordChangedDate" Type="datetime" />
+    <Property Name="PasswordSalt" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="ProviderUserId" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_UsersInRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="fk_RoleId">
+    <End Role="webpages_Roles" Type="Self.webpages_Roles" Multiplicity="1" />
+    <End Role="webpages_UsersInRoles" Type="Self.webpages_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="webpages_Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="webpages_UsersInRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UserId">
+    <End Role="StaticAdminDetails" Type="Self.StaticAdminDetails" Multiplicity="1" />
+    <End Role="webpages_UsersInRoles" Type="Self.webpages_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="StaticAdminDetails">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="webpages_UsersInRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="AddNewData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmployeeName" Type="varchar" Mode="In" />
+    <Parameter Name="AccountName" Type="varchar" Mode="In" />
+    <Parameter Name="EmailAddress" Type="varchar" Mode="In" />
+    <Parameter Name="CostCenterId" Type="int" Mode="In" />
+    <Parameter Name="MobileNumber" Type="bigint" Mode="In" />
+    <Parameter Name="MobileAcNumber" Type="bigint" Mode="In" />
+    <Parameter Name="DatacardNumber" Type="bigint" Mode="In" />
+    <Parameter Name="DataCardAcNumber" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="DeleteDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmployeeId" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="EditSingleData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserId" Type="int" Mode="In" />
+    <Parameter Name="EmployeeName" Type="varchar" Mode="In" />
+    <Parameter Name="AccountName" Type="varchar" Mode="In" />
+    <Parameter Name="EmailAddress" Type="varchar" Mode="In" />
+    <Parameter Name="CostCenterId" Type="bigint" Mode="In" />
+    <Parameter Name="MobileNumber" Type="bigint" Mode="In" />
+    <Parameter Name="MobileAcNumber" Type="bigint" Mode="In" />
+    <Parameter Name="DataCardNumber" Type="bigint" Mode="In" />
+    <Parameter Name="DatacardAcNumber" Type="bigint" Mode="In" />
+  </Function>
+  <Function Name="getSingleEmployeeDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmployeeId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GetUserName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SaveDataIntoDataBase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MobileAcNumber" Type="bigint" Mode="In" />
+    <Parameter Name="AirtelNumber" Type="bigint" Mode="In" />
+    <Parameter Name="OnetimeCharges" Type="int" Mode="In" />
+    <Parameter Name="Monthlycharges" Type="float" Mode="In" />
+    <Parameter Name="CallCharges" Type="float" Mode="In" />
+    <Parameter Name="ValueAdddedServices" Type="float" Mode="In" />
+    <Parameter Name="MobileInternetUsage" Type="float" Mode="In" />
+    <Parameter Name="Roaming" Type="float" Mode="In" />
+    <Parameter Name="Discounts" Type="float" Mode="In" />
+    <Parameter Name="Taxes" Type="float" Mode="In" />
+    <Parameter Name="TotalCharges" Type="float" Mode="In" />
+    <Parameter Name="WhoUploaded" Type="varchar" Mode="In" />
+    <Parameter Name="UploadedDate" Type="date" Mode="In" />
+    <Parameter Name="ForWhichMonth" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="viewEmployeeDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="CCIDatabaseModelStoreContainer">
+    <EntitySet Name="AirtelManagement" EntityType="Self.AirtelManagement" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="StaticAdminDetails" EntityType="Self.StaticAdminDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="staticEmployeeDetails" EntityType="Self.staticEmployeeDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="webpages_Membership" EntityType="Self.webpages_Membership" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="Self.webpages_OAuthMembership" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="webpages_Roles" EntityType="Self.webpages_Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="webpages_UsersInRoles" EntityType="Self.webpages_UsersInRoles" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_RoleId" Association="Self.fk_RoleId">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UserId" Association="Self.fk_UserId">
+      <End Role="StaticAdminDetails" EntitySet="StaticAdminDetails" />
+      <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

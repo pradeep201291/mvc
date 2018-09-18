@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Index";
+    @Styles.Render("~/Content/ViewData.css")
+}
+<h2 style="position:absolute;margin-left:400px;">AirTravel Management</h2>
+<div style="border-bottom:ridge 1px;top:20px;position:relative;"> 
+    <table>
+        <tr>
+            <td>
+                @using (Html.BeginForm("ImportExcelFile","AirTravelManagement",FormMethod.Get))
+                {
+                    <input type="submit" value="ImportFile" style="width: 100px; background-color: #0060A9;font-size:Large;color:white;height:30px;border:none;" />
+                }
+            </td>
+            <td>
+                @using (Html.BeginForm("View","AirTravelManagement",FormMethod.Post))
+                {
+                    <input type="submit" value="View" style="width: 100px; background-color: #0060A9;font-size:large;color:white;height:30px;border:none;" />
+                }
+            </td>
+        </tr>
+    </table>
+
+
+
+</div>
+

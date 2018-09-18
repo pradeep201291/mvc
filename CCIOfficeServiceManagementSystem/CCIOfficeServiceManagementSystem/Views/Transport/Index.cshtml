@@ -1,0 +1,28 @@
+﻿@model CCIOfficeServiceManagementSystem.Models.Transport
+
+@{
+    ViewBag.Title = "Index";
+     @Styles.Render("~/Content/ViewData.css")
+}
+
+ <h2 style="position:absolute;margin-left:400px;">Transport Management</h2>
+<div style="border-bottom:ridge 1px;top:20px;position:relative;">  
+    <table>
+        <tr>
+            <td>
+                @using (Html.BeginForm("ImportExcelFile", "Transport", FormMethod.Get))
+                {
+                    <input type="submit" value="Import" style="width: 100px; background-color: #0060A9;font-size:large;color:white;height:30px;border:none;" />
+                }
+            </td>
+            <td>
+                @using (Html.BeginForm("ViewDataOfTransDatabase", "Transport", FormMethod.Post)) 
+                {
+                    <input type="submit" value="View" style="width: 100px; background-color: #0060A9;font-size:large;color:white;height:30px;border:none;" />
+                }
+            </td>
+        </tr>
+    </table>
+   
+</div>
+ 

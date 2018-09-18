@@ -1,0 +1,127 @@
+﻿@model CCIOfficeServiceManagementSystem.Models.LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+    @Styles.Render("~/Content/LoginPage.css")
+    
+}
+@*<section id="loginForm">*@
+@*<fieldset>*@
+    @*<h2 style="text-align:center">Admin Login</h2>*@
+    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }))
+    {
+         @Html.AntiForgeryToken()
+
+    <div style="top:110px;left:210px;position:relative;width:320px; border:1px ridge;">
+        <div style="border-bottom:ridge 1px;text-align:center;"> <h2>Admin Login</h2></div>
+        <table style="margin-left:90px;">
+            @*<tr> 
+
+                <td style="text-align:center;"><h2>Admin Login </h2> </td>
+            </tr>*@
+            <tr><td></td></tr>
+            <tr></tr>
+          
+             
+            <tr>
+                <td style="font-size:large;">
+                    @Html.LabelFor(m => m.UserName)<br />
+
+                    @Html.TextBoxFor(m => m.UserName)
+                    <br />
+                    @Html.ValidationMessageFor(m => m.UserName)
+                </td>
+            </tr>
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+            <tr>
+                <td style="font-size:large;">
+
+                    @Html.LabelFor(m => m.Password)<br />  
+                    @Html.PasswordFor(m => m.Password)
+                    <br />
+                    @Html.ValidationMessageFor(m => m.Password)
+                   
+                </td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td style="font-size:medium;">
+                    @Html.CheckBoxFor(m => m.RememberMe)
+                    @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+                </td>
+            </tr><tr></tr><tr></tr>
+            <tr>
+                <td style="text-align:center;">
+
+                    <input type="submit" value="Log in" style="background-color:deepskyblue" />
+                </td>
+            </tr>
+
+        </table>
+    </div>
+        
+    }
+<span style="color:red;position:absolute;top:30px;left:50px">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+</span>
+        @*<span style="color:red">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "Incorrect Password!!!!")
+        </span>
+        <legend>Log in Form</legend>
+        <table style="left:200px;">
+            <tr>
+                <td>
+                    <h4>@Html.LabelFor(m => m.UserName)</h4>
+                </td>
+                <td></td>
+                <td>
+                    @Html.TextBoxFor(m => m.UserName)
+                    @Html.ValidationMessageFor(m => m.UserName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>@Html.LabelFor(m => m.Password)</h4>
+                </td>
+                <td></td>
+                <td>
+                    @Html.PasswordFor(m => m.Password)
+                    @Html.ValidationMessageFor(m => m.Password)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h4>@Html.CheckBoxFor(m => m.RememberMe)</h4>
+                </td>
+                <td>
+                    <h4>@Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })</h4>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Log in" />
+                </td>
+            </tr>
+        </table>*@
+
+   
+@*</fieldset>*@
+@*</section>*@
+<div class="asideimg">
+    <aside>
+        <img src="~/Images/186.JPG" width="200" height="200" style="position:absolute;top:50px;"/>
+    </aside>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script>
+    $(document).ready(function () {
+        $("#divMenuDiv").hide();
+        });
+    </script>
+}

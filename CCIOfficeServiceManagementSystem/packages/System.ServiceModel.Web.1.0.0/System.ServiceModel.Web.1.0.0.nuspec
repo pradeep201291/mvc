@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>System.ServiceModel.Web</id>
+    <version>1.0.0</version>
+    <title>System.ServiceModel.Web</title>
+    <authors>Microsoft</authors>
+    <owners>Microsoft</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Provides classes related to the web service model.</description>
+    <releaseNotes>First version.</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>service model servicemodel</tags>
+  </metadata>
+</package>

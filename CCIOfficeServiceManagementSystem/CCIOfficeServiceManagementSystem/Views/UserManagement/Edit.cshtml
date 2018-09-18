@@ -1,0 +1,154 @@
+﻿@model CCIOfficeServiceManagementSystem.Models.UserModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div style="position:relative;top:10px;border-bottom:ridge 1px;">
+    <table style="margin-left:300px;font-size:x-large;font-weight:600;">
+        <tr>
+            <td>
+                Edit Employee Data  
+            </td>
+        </tr>
+    </table>
+</div>
+ <br />
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>UserModel</legend>
+        <table>  
+            <tr>
+        <td>
+            @Html.LabelFor(model => model.EmployeeId)
+        </td>
+        <td></td>
+        <td>
+            @Html.TextBoxFor(model => model.EmployeeId, new { disabled = "disabled" })
+            @Html.ValidationMessageFor(model => model.EmployeeId)
+        </td>
+    </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.EmployeeName)
+
+                </td>
+                <td></td>
+                <td>
+                    @Html.EditorFor(model => model.EmployeeName)
+                   
+                    @Html.ValidationMessageFor(model => model.EmployeeName)
+                </td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.AccountName)
+                </td>
+                <td></td>
+                <td>
+                    @Html.EditorFor(model => model.AccountName)
+                    @Html.ValidationMessageFor(model => model.AccountName)
+                </td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.EmailAddress)
+                </td>
+                <td></td>
+                <td>
+                    @Html.EditorFor(model => model.EmailAddress)
+                    @Html.ValidationMessageFor(model => model.EmailAddress)
+                </td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.CostCenterId)
+                </td>
+                <td></td>
+                <td>
+                    @Html.EditorFor(model => model.CostCenterId)
+                    @Html.ValidationMessageFor(model => model.CostCenterId)
+                </td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.MobileNumber)
+                </td>
+                <td>
+
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.MobileNumber)
+                    @Html.ValidationMessageFor(model => model.MobileNumber)
+                </td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.MobileAcNumber)
+                </td>
+                <td></td>
+                <td>
+                    @Html.EditorFor(model => model.MobileAcNumber)
+                    @Html.ValidationMessageFor(model => model.MobileAcNumber)
+                </td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.DataCardNumber)
+                </td>
+                <td></td>
+                <td>
+                    @Html.EditorFor(model => model.DataCardNumber)
+                    @Html.ValidationMessageFor(model => model.DataCardNumber)
+                </td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.DatacardAcNumber)
+                </td>
+                <td></td>
+                <td>
+                    @Html.EditorFor(model => model.DatacardAcNumber)
+                    @Html.ValidationMessageFor(model => model.DatacardAcNumber) 
+                </td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td>
+                    Office Location
+                </td>
+                <td></td>
+                <td>
+                    @Html.TextBoxFor(m => m.OfficeLocation)
+                    @Html.ValidationMessageFor(m => m.OfficeLocation)
+                </td>
+            </tr>
+            <tr><td></td></tr>
+            <tr></tr>
+            <tr>
+                <td><input type="submit" value="Save" /></td>
+                <td></td>
+                <td>@Html.ActionLink("Back to List", "Index")</td>
+            </tr>
+
+        </table>
+        
+    </fieldset>
+}
+
+ 
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
